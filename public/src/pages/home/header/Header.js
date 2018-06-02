@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Icon} from 'antd'
 import {Service} from '../../../lib'
+import {Link} from 'react-router-dom'
 import './index.scss'
 
 class Header extends Component {
@@ -15,35 +16,40 @@ class Header extends Component {
           icon: 'home',
           tip: '主页',
           mouseEnter: false,
-          link: 'home'
+          link: 'home',
+          to: '#'
         },
         {},
         {
           icon: 'user',
           tip: '关于我',
           mouseEnter: false,
-          link: 'about'
+          link: 'about',
+          to: 'about'
         },
         {},
         {
           icon: 'heart-o',
           tip: '喜欢吗？喜欢就赞一下吧！',
           mouseEnter: false,
-          link: 'like'
+          link: 'like',
+          to: '#'
         },
         {},
         {
           icon: 'github',
           tip: '我的GitHub',
           mouseEnter: false,
-          link: 'https://github.com/justwiner'
+          link: 'https://github.com/justwiner',
+          to: '#'
         },
         {},
         {
           icon: 'form',
           tip: '我的博客',
           mouseEnter: false,
-          link: 'https://segmentfault.com/u/winer_5ad36a96049db/articles'
+          link: 'https://segmentfault.com/u/winer_5ad36a96049db/articles',
+          to: '#'
         }
       ],
       currentIp: ''
@@ -121,12 +127,14 @@ class Header extends Component {
                     return <div key={index}/>
                   } else {
                     return item.mouseEnter 
-                    ? <div 
-                      key={index}
+                    ? <Link 
+                    key={index}
+                    to={item.to}>
+                    <div 
                       onMouseLeave={this.menuItemLeave.bind(this, index, menuItem)}
                       onMouseEnter={this.menuItemEnter.bind(this, index, menuItem)}
                       onClick={this.menuItemLink.bind(this,item.link)}
-                      className="menuItem-tip"><span>{item.tip}</span></div> 
+                      className="menuItem-tip"><span>{item.tip}</span></div></Link>
                     : <div  
                       key={index}
                       onMouseLeave={this.menuItemLeave.bind(this, index, menuItem)}
