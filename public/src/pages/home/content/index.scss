@@ -1,0 +1,89 @@
+$overlay: 2s;
+$content: 1s;
+$imgSize: 300px;
+$conTop: 2%;
+$conFontSize: 1.5vw;
+.content{
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  z-index: 3;
+  transform: translateX(-100%);
+  animation-name: content;
+  animation-delay: $overlay;
+  animation-duration: $content;
+  animation-fill-mode: forwards;
+  .content-img {
+    border: 1px solid lightgray;
+    font: italic 2em Georgia, serif;
+    background: url('../../../../public/img/head.jpg') no-repeat;
+    background-size: 100% 100%;
+    border-radius: 50%;
+    height: $imgSize;
+    width: $imgSize;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .content-con {
+    margin-top: $conTop;
+    width: 100%;
+    font-family: Tahoma、Arial、Verdana;
+    font-size: $conFontSize;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    p {
+      width: 100%;
+      text-align: center;
+      padding:0 20%;
+      color: white;
+    }
+  }
+  @media screen and (orientation: portrait) {
+    @media screen and (max-width:1024px) {
+      .content-img {
+        height: $imgSize / 1.2;
+        width: $imgSize / 1.2;
+      }
+      .content-con {
+        font-size: $conFontSize * 1.5;
+      }
+    }
+    @media screen and (max-width: 700px){
+      .content-img {
+        height: $imgSize / 2;
+        width: $imgSize / 2;
+      }
+    }
+  }
+  @media screen and (orientation: landscape) {
+    @media screen and (max-width: 1024px){
+      .content-img {
+        height: $imgSize / 1.5;
+        width: $imgSize / 1.5;
+      }
+    }
+    @media screen and (max-width: 736px){
+      .content-img {
+        height: $imgSize / 3;
+        width: $imgSize / 3;
+      }
+    }
+  }
+}
+@keyframes content {
+  0%   {
+    display: none;
+    transform: translateX(-20%);
+  }
+  100% {
+    display: block;
+    transform: translateX(0);
+  }
+}

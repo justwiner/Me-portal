@@ -1,0 +1,248 @@
+$menuCilck: 200ms;
+$menuIconSize: 3vw;
+$menuContentItemWidth: 160px;
+$menuContentItemMargin: 5px;
+$menuContentItemFontSize: 2vw;
+$menuContentItemTipSize: 1vw;
+$menuContentWidth: $menuContentItemWidth * 3 + $menuContentItemMargin * 6;
+
+.header {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  padding:3% 3%;
+  .menuOff {
+    animation-name: menuIconOff;
+  }
+  .menuOn {
+    animation-name: menuIconOn;
+  }
+  .menuOff, .menuOn {
+    cursor: pointer;
+    font-size: $menuIconSize;
+    animation-duration: $menuCilck;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    z-index: 6
+  }
+  .menu-overlayOff, .menu-overlayOn, .menu-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #111;
+    animation-duration: $menuCilck;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    color: white;
+    padding:3% 3%;
+    .closeIcon {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      .menuClose {
+        cursor: pointer;
+        font-size: $menuIconSize;
+      }
+    }
+    .menu-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80%;
+      .menu-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: $menuContentWidth;
+        font-size: $menuContentItemFontSize;
+        div, .menuItem-tip {
+          width: $menuContentItemWidth;
+          height: $menuContentItemWidth;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: $menuContentItemMargin
+        }
+        div:nth-child(odd) {
+          border: 1px solid rgba(220,220,220,0.1);
+          cursor: pointer;
+        }
+        .menuItem-tip {
+          border: 1px solid rgba(113,86,153,0.5);;
+          background: rgba(113,86,153,0.5);;
+          cursor: pointer;
+          span {
+            font-size: $menuContentItemTipSize;
+            font-family: arial,"Hiragino Sans GB","Microsoft Yahei",sans-serif;
+            padding:0 10%;
+            animation-name: menuItemTip;
+            animation-fill-mode: forwards;
+            animation-duration: 100ms;
+            animation-timing-function: linear;
+          }
+        }
+        .menuItem-icon i{
+          animation-name: menuItemIcon;
+          animation-fill-mode: forwards;
+          animation-duration: 100ms;
+          animation-timing-function: linear;
+        }
+      }
+    }
+  }
+  .menu-overlay {
+    display: none;
+  }
+  .menu-overlayOff {
+    animation-name: menuOverlayOff;
+  }
+  .menu-overlayOn {
+    animation-name: menuOverlayOn
+  }
+  @media screen and (max-width: 1024px) {
+    .menuOff, .menuOn {
+      font-size: $menuIconSize * 2;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .menuOff, .menuOn {
+      font-size: $menuIconSize * 3;
+    }
+  }
+  @media screen and (orientation:portrait) {
+    @media screen and (max-width: 1024px){
+      .menu-overlayOff, .menu-overlayOn {
+        .menu-container {
+          .menuClose {
+            font-size: $menuIconSize * 1.2;
+          }
+          .menu-content {
+            width: $menuContentWidth / 1.2;
+            font-size: $menuContentItemFontSize * 1.5;
+            div, .menuItem-tip {
+              width: $menuContentItemWidth / 1.2;
+              height: $menuContentItemWidth / 1.2;
+              margin: $menuContentItemMargin / 1.2;
+            }
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 600px) {
+      .menu-overlayOff, .menu-overlayOn {
+        .menu-container {
+          .menuClose {
+            font-size: $menuIconSize * 2;
+          }
+          .menu-content {
+            width: $menuContentWidth / 2;
+            div, .menuItem-tip {
+              width: $menuContentItemWidth / 2;
+              height: $menuContentItemWidth / 2;
+              margin: $menuContentItemMargin / 2;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (orientation:landscape) {
+    @media screen and (max-width: 1024px){
+      .menu-overlayOff, .menu-overlayOn {
+        .menu-container {
+          .menuClose {
+            font-size: $menuIconSize * 1.2;
+          }
+          .menu-content {
+            width: $menuContentWidth / 1.2;
+            font-size: $menuContentItemFontSize * 1.2;
+            div, .menuItem-tip {
+              width: $menuContentItemWidth / 1.2;
+              height: $menuContentItemWidth / 1.2;
+              margin: $menuContentItemMargin / 1.2;
+            }
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 800px) {
+      .menu-overlayOff, .menu-overlayOn {
+        .menu-container {
+          .menuClose {
+            font-size: $menuIconSize * 2;
+          }
+          .menu-content {
+            width: $menuContentWidth / 2;
+            div, .menuItem-tip {
+              width: $menuContentItemWidth / 2;
+              height: $menuContentItemWidth / 2;
+              margin: $menuContentItemMargin / 2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@keyframes menuIconOn {
+  0% {
+    transform: scale(1);
+    color: white;
+  }
+  100% {
+    transform: scale(0.7);
+    color: #715699;
+  }
+}
+@keyframes menuIconOff{
+  0% {
+    transform: scale(0.7);
+    color: #715699;
+  }
+  100% {
+    transform: scale(1);
+    color: white;
+  }
+}
+@keyframes menuOverlayOn {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: .9;
+  }
+}
+@keyframes menuOverlayOff {
+  0% {
+    visibility: visible;
+    opacity: .9;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+@keyframes menuItemIcon {
+  0% {
+    transform: translateY(-300%)
+  }
+  100% {
+    transform: translateY(0)
+  }
+}
+@keyframes menuItemTip {
+  0% {
+    transform: translateY(100%)
+  }
+  100% {
+    transform: translateY(0)
+  }
+}

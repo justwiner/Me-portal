@@ -1,0 +1,16 @@
+{
+  "name": "portal",
+  "version": "1.0.0",
+  "description": "The portal of winer",
+  "main": "index.js",
+  "repository": "https://github.com/justwiner/me-portal.git",
+  "author": "winer",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "http-errors": "^1.6.3",
+    "mongoose": "^5.1.3"
+  }
+}
