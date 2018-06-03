@@ -2,6 +2,7 @@ const express = require('express')
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const musicRouter = require('./routes/music163')
+const portalRouter = require('./routes/portal')
 const app = express()
 
 app.all('*', function(req, res, next) {
@@ -19,6 +20,7 @@ app.use(cookieParser());
 const port = process.env.PORT || 2222;
 
 app.use('/api/music163', musicRouter);
+app.use('/api/portal', portalRouter);
 
 app.use(function(req, res, next) {
     next(createError(404));
