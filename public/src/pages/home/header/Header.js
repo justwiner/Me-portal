@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Icon} from 'antd'
+import {Icon, message, Spin} from 'antd'
 import {Service} from '../../../lib'
 import {Link} from 'react-router-dom'
 import './index.scss'
@@ -52,13 +52,14 @@ class Header extends Component {
           to: '#'
         }
       ],
-      currentIp: ''
+      currentIp: '',
+      loading: false
     }
   }
   componentDidMount () {
-    this.ifAddLike()
+    this.getCurrentIp()
   }
-  ifAddLike () {
+  getCurrentIp () {
     Service.getIP().then(res => {
       this.setState({
         currentIp: res.data.onlineip
@@ -108,13 +109,32 @@ class Header extends Component {
       switch ( link ) {
         case 'home': this.close(); break;
         case 'about': console.log('about me'); break;
-        case 'like': console.log('I like !'); break;
+        case 'like': this.addPraise(); break;
         default: console.log('未定义的操作'); break;
       }
     }
   }
+  addPraise () {
+    const { currentIp } = this.state
+    this.setState({
+        loading: true
+    })
+    Service.likeIt(currentIp).then(res => {
+      const { status, text } = res.data
+      console.log(text)
+      status ? message.success(text) : message.error(text)
+      this.setState({
+          loading: false
+      })
+    }).catch(err => {
+      message.error('糟糕，服务器出问题了...')
+      this.setState({
+          loading: false
+      })
+    })
+  }
   render () {
-    const { menuType, menuClass, menuOverlay, mouseEnter, tipText, menuItem } = this.state
+    const { menuType, menuClass, menuOverlay, menuItem, loading } = this.state
     return (
       <header ref="header" className="header">
         <div className={menuOverlay}>
@@ -134,7 +154,7 @@ class Header extends Component {
                       onMouseLeave={this.menuItemLeave.bind(this, index, menuItem)}
                       onMouseEnter={this.menuItemEnter.bind(this, index, menuItem)}
                       onClick={this.menuItemLink.bind(this,item.link)}
-                      className="menuItem-tip"><span>{item.tip}</span></div></Link>
+                      className="menuItem-tip"><span>{loading ? <Icon type='loading' /> : item.tip}</span></div></Link>
                     : <div  
                       key={index}
                       onMouseLeave={this.menuItemLeave.bind(this, index, menuItem)}
