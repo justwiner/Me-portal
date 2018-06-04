@@ -10,18 +10,25 @@ $musicIconSize: 3vw;
     height: 100%;
   }
   .bg-animate {
-    background:#222 url('../../../public/img/bg.jpg') no-repeat fixed top;
-    background-size: cover;
-    background-position: center center;
-    animation-name: bg;
-    animation-duration: $bg;
-    animation-timing-function: linear;
-    animation-delay: 0;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    width: 100%;
+    height: 100%;
+    .img {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background:#222 url('../../../public/img/bg.jpg') no-repeat fixed top;
+      background-size: cover;
+      background-position: center center;
+      animation-name: bg;
+      animation-duration: $bg;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
   }
   .overlay {
     position: absolute;
+    width: 100%;
     left: 0;
     top: 0;
     z-index: 2;
@@ -52,15 +59,22 @@ $musicIconSize: 3vw;
   @media screen and (max-width: 1024px) {
     .music {
       font-size: $musicIconSize * 2;
-      top: 80%;
       left: 90%;
     }
   }
   @media screen and (max-width: 600px) {
     .music {
       font-size: $musicIconSize * 3;
-      top: 90%;
       left: 85%;
+    }
+  }
+  @media screen and (orientation: landscape) {
+    @media screen and (max-width: 1024px) {
+      .music {
+        font-size: $musicIconSize * 2;
+        top: 80%;
+        left: 90%;
+      }
     }
   }
 }

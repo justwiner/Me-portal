@@ -68,7 +68,9 @@ class Home extends Component {
         const {musicIcon, currMusicSrc} = this.state
         return (
             <content className="container">
-                <div className="bg-animate" />
+                <div className="bg-animate">
+                    <div className="img"></div>
+                </div>
                 <div className="overlay" />
                 <div ref="line" className="line" />
                 <Header />
